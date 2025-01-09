@@ -1,0 +1,64 @@
+<!-- Packages Start -->
+<div class="container-fluid packages gap-remove">
+  <div class="container py-5">
+    <div class="mx-auto text-center mb-5" style="max-width: 900px">
+      <h5 class="section-title px-3">Popular Podcasts</h5>
+    </div>
+
+    <div class="packages-carousel gap-remove">
+      <p-carousel
+        [value]="episodes"
+        [numVisible]="3"
+        [numScroll]="3"
+        [circular]="true"
+        [responsiveOptions]="responsiveOptions"
+        styleClass="custom-carousel"
+      >
+        <ng-template let-episode pTemplate="item">
+          <div class="carousel-item">
+            <div class="image-container">
+              <img
+                [src]="imageURL + '/' + episode.episode_image"
+                [alt]="episode.episode_title"
+                class="image"
+              />
+            </div>
+            <div class="info-container">
+              <h5 class="title">{{ episode.episode_title | shorten : 60 }}</h5>
+              <small class="meta">
+                {{ episode.episode_date | date : "dd-MM-yyyy" }} |
+                {{ episode.podcasters.podcaster_full_name }}
+              </small>
+            </div>
+            <div class="actions">
+              <a
+                *ngIf="episode.episode_spotify_link"
+                [href]="episode.episode_spotify_link"
+                style="font-size: 25px"
+                class="btn btn-success"
+                target="_blank"
+                pTooltip="Spotify"
+              >
+                <i class="fab fa-spotify"></i>
+              </a>
+              <a
+                *ngIf="episode.episode_youtube_link"
+                [href]="episode.episode_youtube_link"
+                style="font-size: 25px"
+                class="btn btn-danger"
+                target="_blank"
+                pTooltip="Youtube"
+              >
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+    <div class="button-container">
+      <a routerLink="podcasts/page/1" class="btn btn-info">See All</a>
+    </div>
+  </div>
+</div>
+<!-- Packages End -->
